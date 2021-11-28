@@ -9,7 +9,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main {
+public class ReverseWordsSaveSpaces {
     public static void main(String[] args) {
 
         System.out.println(Kata.reverseWords("This is an  example!"));
