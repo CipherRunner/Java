@@ -37,7 +37,7 @@ public class ProducerConsumer {
 
     }
 
-    public static void produce() throws InterruptedException {
+    public static void produce() throws InterruptedException {      // Один или много потоков которые создают запросы или что-то еще
         Random random = new Random();
         while (true) {
             bq.put(random.nextInt(100));           // Этот метод ждет, если наш consumer еще не взял элементы из
@@ -47,7 +47,7 @@ public class ProducerConsumer {
 
     }
 
-    public static void consumer() throws InterruptedException {
+    public static void consumer() throws InterruptedException {     // Это то что берет из этого общего пула сущностей, берет сущность и как-то ее обрабатывает
         Random random = new Random();
 
         while (true) {
