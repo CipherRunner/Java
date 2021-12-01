@@ -1,11 +1,13 @@
-
+package CodeWars;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ReverseWordsSaveSpaces {
     public static void main(String[] args) {
-        System.out.println(Kata2.factorial(-1));
+        int [] arr2 = {5, 4, 3, 2, 1 };
+        System.out.println(Kata2.isSortedAndHow(arr2));
 
     }
 }
@@ -49,15 +51,39 @@ class Kata {
     }
 }
 
-// factorial
 class Kata2 {
-    public static int factorial(int n) {
-        if (n < 0 || n > 12) {
-            throw new IllegalArgumentException();
+    public static String isSortedAndHow(int[] array) {
+        String yeaUp = "yes, ascending";
+        String yeaDown = "yes, descending";
+        String no = "no";
+
+        int [] arr = array;
+        int [] arrUp = array.clone();
+        int [] arrDown = new int[array.length];
+
+        for (int n = 0; n < arrUp.length; n++) {
+            for (int i = 0; i <arrUp.length-1; i++) {
+                if (arrUp[i] > arrUp[i+1]) {
+                    int temp = 0;
+                    temp = arrUp[i];
+                    arrUp[i] = arrUp[i+1];
+                    arrUp[i+1] = temp;
+                }
+            }
         }
-        if (n == 0 || n == 1) {
-            return 1;
+        int counter = 0;
+
+        for (int m = arrUp.length-1; m >= 0; m--) {
+            arrDown[counter] = arrUp[m];
+            counter++;
         }
-        return n * factorial(n-1);
+
+        if (Arrays.equals(array, arrUp)) {
+            return yeaUp;
+        } else if (Arrays.equals(array, arrDown)) {
+            return yeaDown;
+        } else return no;
     }
 }
+
+

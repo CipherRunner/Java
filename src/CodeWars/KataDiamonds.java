@@ -1,4 +1,4 @@
-/*
+package CodeWars;/*
 Description:
 Jamie is a programmer, and James' girlfriend. She likes diamonds, and wants a diamond string from James. Since James doesn't know how to make this happen, he needs your help.
 
@@ -27,7 +27,7 @@ A size 5 diamond:
 
 public class KataDiamonds {
     public static void main(String[] args) {
-        System.out.println(print(11));
+        System.out.println(print(21));
     }
     public static String print(int n) {
         if (n%2==0 || n < 0) {

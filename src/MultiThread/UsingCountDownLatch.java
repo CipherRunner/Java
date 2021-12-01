@@ -1,3 +1,5 @@
+package MultiThread;
+
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -14,19 +16,23 @@ public class UsingCountDownLatch {
         ExecutorService executorService = Executors.newFixedThreadPool(3);  // 3 потока
 
         for (int i = 0; i < 3; i++) {
-            executorService.submit(new Processor(countDownLatch));                  // каждому потоку назначается задание
+            executorService.submit(new Processor(countDownLatch, i));                  // каждому потоку назначается задание
         }
-        executorService.shutdown();
 
-        countDownLatch.await();                                                     // ждать
-        System.out.println("Защелка открылась, исполняется main thread");           // после выполнения задания потоками
+        for (int i = 0; i < 3; i++) {
+            Thread.sleep(1000);
+            countDownLatch.countDown();
+        }
+
     }
 }
 
 class Processor implements Runnable {                                               // задание
+    private int id;
     private CountDownLatch countDownLatch;                                          // внутренний CountDownLatch
 
-    public Processor(CountDownLatch countDownLatch) {
+    public Processor(CountDownLatch countDownLatch, int id ) {
+        this.id = id;
         this.countDownLatch = countDownLatch;
     }
 
@@ -37,7 +43,12 @@ class Processor implements Runnable {                                           
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        countDownLatch.countDown();                                                 // countDown декрементирует переменную
+        try {
+            countDownLatch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Поток с id: " + id + " выполнен");
     }
 
 }

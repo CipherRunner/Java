@@ -1,3 +1,5 @@
+package MultiThread;
+
 import java.util.LinkedList;
 import java.util.Queue;
 

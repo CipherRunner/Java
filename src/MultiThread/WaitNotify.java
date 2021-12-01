@@ -1,15 +1,23 @@
+package MultiThread;
+
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 // Методы wait и notify
 public class WaitNotify {
+    Queue<Integer> queue = new LinkedList();
+    private final int LIMIT = 10;       // максимальное значение сущостей в очереди
+    private Object lock = new Object(); // создаем объект на котором будет происходить синхронизация
+
     public static void main(String[] args) throws InterruptedException {
-        WaitAndNotify waitAndNotify = new WaitAndNotify();
+        ProdConsumer1 prodConsumer = new ProdConsumer1();
 
         Thread thread1 = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    waitAndNotify.produce();
+                    prodConsumer.produce();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -20,7 +28,7 @@ public class WaitNotify {
             @Override
             public void run() {
                 try {
-                    waitAndNotify.consume();
+                    prodConsumer.consume();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -35,7 +43,7 @@ public class WaitNotify {
     }
 }
 
-class WaitAndNotify {
+class ProdConsumer1 {
     public void produce() throws InterruptedException {
         synchronized (this) {
             System.out.println("Producer thread стартанул");
