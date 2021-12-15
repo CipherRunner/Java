@@ -12,12 +12,7 @@ public class Fibonachchi {
     }
 
 
-    // медленный, рекурсивный
-    private static long fibSlow(int n) {
-        if (n <= 1)
-            return n;
-        return fibSlow(n-1) + fibSlow(n-2);
-    }
+
 
     // рекурсивный с сохранением результатов
     private static long fibMemoization(int n, long[] mem) {
@@ -32,12 +27,21 @@ public class Fibonachchi {
 
     }
 
+
+    // медленный, рекурсивный
+    private static long fibSlow(int n) {
+        if (n <= 1)
+            return n;
+        return fibSlow(n-1) + fibSlow(n-2);
+    }
+
+
     // эффективный способ, линейный
     private static long fibFast(int n) {
-        long [] arr = new long[n+1];
-        arr[0] = 0;
-        arr[1] = 1;
-        for (int i = 2; i <= n; i++) {
+        long [] arr = new long[n+1];        // O(n)
+        arr[0] = 0;                           // O(1)
+        arr[1] = 1;                       // O(1)
+        for (int i = 2; i <= n; i++) {      // O(n)
             arr[i] = arr[i-1] + arr[i-2];
         }
 

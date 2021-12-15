@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import java.util.Scanner;
 
 public class TestReflectionV2 {
+    public int iye;
     public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
         Scanner scanner = new Scanner(System.in);
         // Название_класса_1 Название_класса_2 название_метода

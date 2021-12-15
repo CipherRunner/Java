@@ -1,4 +1,4 @@
-package Reflection;
+package Reflectionss;
 
 @Autor(name = "Mark", dateOfCreation = 2021)
 public class Person {
@@ -36,5 +36,11 @@ public class Person {
         this.id = id;
     }
 
-
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
